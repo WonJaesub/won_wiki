@@ -1,0 +1,40 @@
+<div class="nav-wrapper">
+	<nav class="navbar navber-dark bg-inverse navbar-static-top">
+		<ul class="nav nav-bar" id="navleftul">
+			<li class="nav-item">
+				<button class="btn btn-lg">
+					<a href="/w/MainGate">Home</a>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="btn btn-lg">
+					<a href="/resent">resent</a>
+				</button>
+			</li>
+			
+		</ul>
+		<ul class="nav nav-bar pull-right">
+			<li class="nav-item dropdown">
+				<button class="btn btn-lg dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-expanded="true">
+					<span class="glyphicon glyphicon-user"></span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userDropdown">
+					<li role="presentation">
+						<a role="menuitem" href="/login">Log in</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<form class="form-inline navbar-form search-box-parent" style="float:right;">
+			<div class="input-group input-group-lg">
+				<div class="input-group-btn"><button type="button" id="randomBtn" class="btn btn-default">
+					<a href="/random"><span class="glyphicon glyphicon-random"></span></a>
+				</button></div>
+				<input type="text" id="searchInput" class="form-control" placeholder="Search">
+				<div class="input-group-btn"><button id="searchBtn" class="btn btn-default" type="button">
+					<span class="glyphicon glyphicon-search"></span>
+				</button></div>
+			</div> <!-- input-group -->
+		</form>
+	</nav>
+</div>

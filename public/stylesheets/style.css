@@ -1,0 +1,33 @@
+.nav-wrapper {
+	background-color: #008275;
+}
+
+.navbar {
+	font-size: 1rem;
+	max-width: 1300px;
+}
+
+.search-box-parent {
+	height: 100%;
+	margin: 0;
+}
+.navbar-form {
+	padding: 0px;
+}
+
+.nav-wrapper> nav> ul> li> button {
+	background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent;
+    border: none;
+
+    color: #FFFFFF;
+}
+.nav-wrapper> nav> ul> li> button> a {
+	color: white;
+}
+
+#navleftul,
+.nav-wrapper> nav> ul> li {
+	float: left;
+}
