@@ -8,24 +8,25 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </head>
-  <body class="senkawa">
-  
+  <body>
+  	
+  	
   	<% include header %>
 	<div class="container-wrapper">
 		<article class='container-fluid wiki-article'>
-		<div class="wiki-article-menu">
-			<div class="btn-group" role="group">
-				<a class="btn btn-secondary" href="/edit/<%= title %>">編集</a>
-			</div>
-		</div> <!-- wiki-article-menu -->
-			<h1 class="title"><%= title %></h1>
-			<p class="wiki-edit-date">最近修正時間: <time datetime="<%= finalModifiedDate %>" data-format="Y-m-d H:i:s"><%= finalModifiedDate %></time></p>
+			<h1 class="title"><a href="/w/<%= title %>"><%= title %></a><small> (新しい文書作成)</small></h1>
 			<div class="wiki-content">
 				<div class="wiki-inner-content">
-					<%- content %>
-					<% console.log(content) %>
+					<form method="post" id="editForm">
+						<input type="hidden" name="title" value="<%= title %>">
+						<input type="hidden" name="_id" value="<%= _id %>">
+						<div class="tab-content bordered">
+							<textarea id="textInput" name="text" wrap="soft" class="form-control"><%= content %></textarea>
+						</div>
+					</form>
+					<button type="submit" form="editForm" id="submit" class="btn btn-lg btn-primary">提出</button>
 				</div>
-			</div>
+			</div> <!--wiki-content -->
 		</article>
 	</div>
 	<!-- container -->

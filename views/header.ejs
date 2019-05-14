@@ -25,13 +25,13 @@
 				</ul>
 			</li>
 		</ul>
-		<form class="form-inline navbar-form search-box-parent" style="float:right;">
+		<form method="get" action="/search" class="form-inline navbar-form search-box-parent" style="float:right;">
 			<div class="input-group input-group-lg">
 				<div class="input-group-btn"><button type="button" id="randomBtn" class="btn btn-default">
 					<a href="/random"><span class="glyphicon glyphicon-random"></span></a>
 				</button></div>
-				<input type="text" id="searchInput" class="form-control" placeholder="Search">
-				<div class="input-group-btn"><button id="searchBtn" class="btn btn-default" type="button">
+				<input type="text" name="searchInput" id="searchInput" class="form-control" placeholder="Search">
+				<div class="input-group-btn"><button id="searchBtn" class="btn btn-default" type="submit">
 					<span class="glyphicon glyphicon-search"></span>
 				</button></div>
 			</div> <!-- input-group -->

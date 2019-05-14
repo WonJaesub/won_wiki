@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  	
+  	
+  	<% include header %>
+  	<div class="container-wrapper">
+		<article class="container-fluid wiki-article">
+			<h1 class="title">"<%= title %>"検索結果</h1>
+			<div class="alert alert-info search-help" role="alert">
+				<div class="pull-left">
+					<span class="icon ion-chevron-right"></span>&nbsp; 探す文書がないんですか?
+					文書で直行できます。
+
+				</div>
+				<div class="pull-right">
+					<a class="btn btn-secondary btn-sm" href="/w/<%= title %>">'<%=
+						title %>' 文書に行く</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</article>
+	</div> <!-- container -->
+  </body>
+</html>
