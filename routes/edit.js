@@ -8,6 +8,7 @@ router.get('/:title*', function(req, res, next) {
 	Content.findOne({title: req.params.title + req.params[0]}, function(err, content) {
 		if(err){return next(err);}
 		if(content) {
+			content.content = content.content.replace(/\\"/g, "\"");
 			return res.render('edit', {title: content.title, content: content.content, _id: content._id});
 		} else {
 			return res.render('edit', {title: req.params.title + req.params[0], content: "", _id: 0});
@@ -33,6 +34,7 @@ router.post('/:title*', function(req, res, next) {
 	var tod = yyyy + '/' + mm + '/' + dd+' '+ h + ':' + m + ':' + s;
 	
 	var text = req.body.text;
+	text = text.replace(/"/g, "\\\"");
 	
 	if(req.body._id === '0') {
 		var newContent = new Content({

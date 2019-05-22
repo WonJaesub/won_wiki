@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body class="senkawa">
+  
+  	<% include header %>
+	<div class="container-wrapper">
+		<article class='container-fluid wiki-article'>
+			<h1 class="title">Login</h1>
+			<form class="login-form" method="post">
+				<% if(loginfail) { %>
+				<div class="loginfailDiv">
+				<p class="bg-danger text-center">ユーザーネームおよびパスワードが一致しておりません。</p>
+				</div>
+				<% } %>
+				<div class="form-group">
+					<label class="control-label" for="usernameInput">Username</label>
+					<input type="text" name="username" id="usernameInput" />
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="passwordInput">Password</label>
+					<input type="password" name="password" id="passwordInput" />
+				</div>
+				<div class="btns">
+					<a class="btn btn-secondary" href="/member/signup?redirect=<%= signupUrl %>">アカウント作成</a>
+					<button type="submit" class="btn btn-primary">ログイン</button>
+				</div>
+			</form>
+			
+			</div>
+		</article>
+	</div>
+	<!-- container -->
+</body>
+</html>

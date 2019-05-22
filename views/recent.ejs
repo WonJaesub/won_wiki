@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>最近変内訳</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body class="senkawa">
+  
+  	<% include header %>
+	<div class="container-wrapper">
+		<article class='container-fluid wiki-article'>
+			<h1 class="title">最近変内訳</h1>
+			<table class="table table-hover">
+				<colgroup>
+					<col>
+					<col style="width: 25%;">
+					<col style="width: 22%;">
+				</colgroup>
+				<thead>
+					<tr><th>項目</th><th>修正者</th><th>修正時刻</th></tr>
+				</thead>
+				<tbody>
+					<% contents.forEach(function(content) { %>
+					<tr>
+						<td><a href="/w/<%= content.title %>"><%= content.title %></a></td>
+						<td><%= content.finalModifier %></td>
+						<td><%= content.finalModifiedDate %></td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</article>
+	</div>
+	<!-- container -->
+</body>
+</html>

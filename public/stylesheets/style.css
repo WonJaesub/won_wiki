@@ -1,3 +1,7 @@
+html {
+	font-size: 16px;	
+}
+
 body.senkawa {
 	background-color: #efefef;
 }
@@ -77,6 +81,7 @@ nav {
 }
 
 .senkawa .wiki-article .wiki-edit-date {
+	font-size: .85rem;
 	margin-top: -1.8rem;
 	margin-bottom: 1rem;
 	text-align: right;
@@ -99,6 +104,32 @@ nav {
 	}
 }
 
+.senkawa .login-form {
+	width: 100%;
+}
+
+.senkawa .login-form input[type=text],
+.senkawa .login-form input[type=password],
+.senkawa .signup-form input[type=text],
+.senkawa .signup-form input[type=password] {
+    width: 100%;
+}
+
+@media screen and (min-width: 34rem) {
+	.senkawa .login-form {
+		width: 28rem;
+		margin: 0 auto;
+	}
+	.senkawa .login-form input[type=text],
+	.senkawa .login-form input[type=password],
+	.senkawa .signup-form input[type=text],
+	.senkawa .signup-form input[type=password] {
+	    display: inline-block;
+	    margin-left: .7rem;
+	    width: calc(100% - 0.7rem);
+	}
+}
+
 .wiki-article> .title {
 	margin: 0 0 2rem;
 	font-weight: 700;
@@ -114,5 +145,25 @@ nav {
 .wiki-article #submit {
 	margin: auto;
 	display: block;
+	margin-top: 2rem;
+}
+
+.loginfailDiv p {
+	line-height: 2rem;
+}
+.senkawa .navbar .user-info .user-info {
+	padding: 3px 20px;
+	line-height: 20px;
+	text-align: right;
+}
+.senkawa .navbar .user-info .user-info div {
+	font-size: .8rem;
+}
+.senkawa .navbar .user-info .user-info div:first-of-type {
+	font-size: 1rem!important;
+	font-weight: 700;
+}
+.senkawa form .btns {
+	text-align: right;
 	margin-top: 2rem;
 }

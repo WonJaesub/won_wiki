@@ -20,6 +20,22 @@ router.get('/random', function(req, res, next) {
 	});
 });
 
+router.get('/recent', function(req, res, next) {
+	Content.find({},
+	['title','finalModifier', 'finalModifiedDate'], // Columns to Return
+	{
+	    skip:0, // Starting Row
+	    limit:100, // Ending Row
+	    sort:{
+	        finalModifiedDate: -1 //Sort by Date Added DESC
+	    }
+	},
+	function(err,contents){
+		if(err){return next(err);}
+	    return res.render('recent', {contents: contents});
+	});
+});
+
 router.get('/search', function(req, res, next) {
 	var search = req.query.searchInput;
 	Content.findOne({title: search}, function(err, content) {

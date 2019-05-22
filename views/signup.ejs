@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/script/mywiki.js"></script>
+  </head>
+  <body class="senkawa">
+  
+  	<% include header %>
+	<div class="container-wrapper">
+		<article class='container-fluid wiki-article'>
+			<h1 class="title">Sign up</h1>
+			<form id="signupform" class="login-form" method="post">
+				<div class="form-group">
+					<label class="control-label" for="usernameInput">Username</label>
+					<input type="text" name="username" id="usernameInput" />
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="passwordInput">Password</label>
+					<input type="password" name="password" id="passwordInput" />
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="passwordInput">Password Confirm</label>
+					<input type="password" name="password2" id="passwordInput2" />
+				</div>
+				<div class="btns">
+				<button type="reset" class="btn btn-secondary">初期化</button>
+				<button class="btn btn-primary" onclick="signupFunction();return false;">加入</button>
+				</div>
+			</form>
+			
+			</div>
+		</article>
+	</div>
+	<!-- container -->
+</body>
+</html>

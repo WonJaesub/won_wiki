@@ -8,7 +8,7 @@
 			</li>
 			<li class="nav-item">
 				<button class="btn btn-lg">
-					<a href="/resent">resent</a>
+					<a href="/recent">recent</a>
 				</button>
 			</li>
 			
@@ -18,10 +18,24 @@
 				<button class="btn btn-lg dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-expanded="true">
 					<span class="glyphicon glyphicon-user"></span>
 				</button>
-				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="userDropdown">
-					<li role="presentation">
-						<a role="menuitem" href="/login">Log in</a>
+				<ul class="dropdown-menu dropdown-menu-right user-info" role="menu" aria-labelledby="userDropdown">
+					<li role="presentation" class='user-info'>
+						<% if(user) { %>
+						<% } else { %>
+						<div><%= ip %></div>
+						<div>Please Log in!</div>
+						<% } %>
 					</li>
+					<li class="divider"></li>
+					<% if(typeof(user) == 'undefined') { %>
+					<li role="presentation">
+						<a role="menuitem" href="/member/login?redirect=<%= url %>">Login</a>
+					</li>
+					<% } else { %>
+					<li role="presentation">
+						<a role="menuitem" href="/member/logout?redirect=<%= url %>">Logout</a>
+					</li>
+					<% } %>
 				</ul>
 			</li>
 		</ul>
