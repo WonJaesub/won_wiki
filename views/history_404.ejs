@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%= title %>の歴史</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     
@@ -15,15 +15,14 @@
 		<article class='container-fluid wiki-article'>
 		<div class="wiki-article-menu">
 			<div class="btn-group" role="group">
-				<a class="btn btn-secondary" href="/history/<%= title %>">歴史</a>
-				<a class="btn btn-secondary" href="/edit/<%= title %>">編集</a>
+				<a class="btn btn-secondary" href="/history/<%= title %>">螻･豁ｴ</a>
+				<a class="btn btn-secondary" href="/edit/<%= title %>">邱ｨ髮�</a>
 			</div>
 		</div> <!-- wiki-article-menu -->
-			<h1 class="title"><%= title %></h1>
-			<p class="wiki-edit-date">最近修正時間: <time datetime="<%= finalModifiedDate %>" data-format="Y-m-d H:i:s"><%= finalModifiedDate %></time></p>
+			<h1 class="title">問題が発生しました！</h1>
 			<div class="wiki-content">
 				<div class="wiki-inner-content">
-					<%- content %>
+					文書を見つかりません。
 				</div>
 			</div>
 		</article>

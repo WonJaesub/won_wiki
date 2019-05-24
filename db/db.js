@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/wiki');
+mongoose.connect('mongodb://localhost/wiki', { useNewUrlParser: true });
 
 var db = mongoose.connection;
 

@@ -12,17 +12,19 @@ var indexRouter = require('./routes/index');
 var wRouter = require('./routes/w');
 var editRouter = require('./routes/edit');
 var memberRouter = require('./routes/member');
+var historyRouter = require('./routes/history');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(expressSession({
 	 secret: '@#@$MYWIKISIGN#@$#$',
 	 resave: false,
@@ -49,6 +51,7 @@ app.use(function(req, res, next) {
 app.use('/w/', wRouter);
 app.use('/edit/', editRouter);
 app.use('/member/', memberRouter);
+app.use('/history/', historyRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

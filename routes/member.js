@@ -30,7 +30,6 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
 	var ip = req.session.ip;
 	req.session.destroy();
-	req.session.ip = ip;
 	res.redirect(decodeURIComponent(req.query.redirect));
 });
 

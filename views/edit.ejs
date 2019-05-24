@@ -8,23 +8,32 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </head>
-  <body>
-  	
+  <body class="senkawa">
   	
   	<% include header %>
 	<div class="container-wrapper">
 		<article class='container-fluid wiki-article'>
-			<h1 class="title"><a href="/w/<%= title %>"><%= title %></a><small> (新しい文書作成)</small></h1>
+			<h1 class="title"><a href="/w/<%= title %>"><%= title %></a><small> (編集)</small></h1>
+			<% if(!user) { %>
+			<div class="alert alert-danger alert-dismissible fade in edit-alert"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
+				</button>
+				<strong>[エラー!]</strong> 編集権限が不足します。ログインされたユーザーである必要があります。
+			</div>
+			<% } %>
 			<div class="wiki-content">
 				<div class="wiki-inner-content">
 					<form method="post" id="editForm">
 						<input type="hidden" name="title" value="<%= title %>">
 						<input type="hidden" name="_id" value="<%= _id %>">
 						<div class="tab-content bordered">
-							<textarea id="textInput" name="text" wrap="soft" class="form-control"><%= content %></textarea>
+							<textarea id="textInput" name="text" wrap="soft" class="form-control" <% if(!user) { %>readonly="readonly"<% } %>><%= content %></textarea>
 						</div>
 					</form>
-					<button type="submit" form="editForm" id="submit" class="btn btn-lg btn-primary">提出</button>
+					<% if(user) { %><button type="submit" form="editForm" id="submit" class="btn btn-lg btn-primary">提出</button><% } %>
 				</div>
 			</div> <!--wiki-content -->
 		</article>

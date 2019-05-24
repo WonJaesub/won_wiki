@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var contentSchema = new Schema({
 	title: String,
-	content: String,
+	idx: Array,
+	content: Array,
 	modified: Array,
 	finalModifiedDate: String,
 	finalModifier: String
