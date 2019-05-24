@@ -34,12 +34,12 @@ function edit(text) {
 		contents = contents.split(/\r\n/);
 		contents.forEach(function(content) {
 			ret += "<tr>";
-			content = content.trim().replace(/\|\|([^|\r\n]+)/g, function(mat, conts, off, in_string) {
-				console.log(conts);
-				conts = conts.trim();
-				return "<td>"+conts+"</td>";
-			});
-			ret += content;
+			content = content.trim().split(/\|\|/);
+			console.log(content.length);
+			for(var i=1; i<content.length-1; i++) {
+				console.log(content[i]);
+				ret += "<td>" +content[i]+ "</td>";
+			}
 			ret += "</tr>";
 		});
 		ret += "</table>";

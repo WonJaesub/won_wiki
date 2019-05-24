@@ -28,15 +28,16 @@ router.get( '/:title*' , function(req, res, next) {
 	    	txt = require('../public/editFunctions')(txt);
 	    	
 	    	var text = txt;
-	    	var idx = text.match(/(={1,6}) [^=]*? \1\r\n/g);
+	    	var idx = text.match(/(={1,6}) [^=]*? \1/g);
 			
-	    	text = text.split(/(={1,6}) [^=]*? \1\r\n/);
+	    	text = text.split(/(={1,6}) [^=]*? \1/);
 	    	// なんか分からない要素があってスライスする
 	    	// 喫水インデックスに問題あり
+	    	//console.log(idx);
 	    	for (var i = 0; i < text.length; i++) { 
 	    		text.splice(i + 1, 1); 
 	    	} 
-	    	//console.log(idx);
+	    	//console.log(text);
 	    	text = text.join('');
 	    	text = text.replace(/(\|\|[\s\S]*?\|\|\r\n\r\n)/g, '');
 	    	//console.log(text);

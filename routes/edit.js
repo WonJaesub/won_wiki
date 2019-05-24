@@ -55,6 +55,8 @@ router.post('/:title*', function(req, res, next) {
 		var idx = new Array();
 		
 		text = text.replace(/"/g, "\\\"");
+		// protect XSS
+		text = text.replace(/<script/g, "&lt;script");
 		var idx = text.match(/(={1,6}) [^=]*? \1\r\n/g);
 		
     	text = text.split(/(={1,6}) [^=]*? \1\r\n/);
