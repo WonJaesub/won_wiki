@@ -10,3 +10,20 @@ function signupFunction() {
 		form.submit();
 	}
 }
+$(function() {
+	$(".wiki-heading").click(function(){
+		var t=$(this);
+		if(t.next().is(':visible'))
+		{
+			t.addClass('wiki-heading-content-folded');
+			t.next().css('display', 'none');
+		}
+		else
+		{
+			t.removeClass('wiki-heading-content-folded');
+			t.next().css('display', 'block');
+		}
+	});
+	
+	
+});

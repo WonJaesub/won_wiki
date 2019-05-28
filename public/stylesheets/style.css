@@ -2,6 +2,10 @@ html {
 	font-size: 16px;	
 }
 
+body, th, td, div, p, li {
+    font-size: .9rem;
+}
+
 body.senkawa {
 	background-color: #efefef;
 }
@@ -147,6 +151,121 @@ nav {
 	display: block;
 	margin-top: 2rem;
 }
+
+.wiki-article .wiki-table {
+	background-color: #f5f5f5;
+    border-collapse: collapse;
+}
+
+.wiki-article .wiki-table td {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.wiki-article .wiki-macro-toc {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 12px 20px 18px 0;
+    margin-left: 5px;
+    font-size: .9rem;
+}
+.wiki-article .wiki-macro-toc:before {
+    content: "目次";
+    font-size: 18px;
+    margin-left: 14px;
+}
+
+.wiki-article .toc-indent {
+    padding-left: 20px;
+}
+.wiki-article .wiki-macro-toc>.toc-indent:first-of-type {
+    margin-top: 12px;
+}
+
+.wiki-article .toc-item {
+    display: block;
+}
+
+.wiki-article h1.wiki-heading,
+.wiki-article h2.wiki-heading,
+.wiki-article h3.wiki-heading,
+.wiki-article h4.wiki-heading,
+.wiki-article h5.wiki-heading,
+.wiki-article h6.wiki-heading {
+    margin: 1.2em 0 .8em;
+}
+
+.wiki-article h1.wiki-heading {font-size: 2.3em}
+.wiki-article h2.wiki-heading {font-size: 1.8em}
+.wiki-article h3.wiki-heading {font-size:1.6em}
+.wiki-article h4.wiki-heading{font-size:1.4em}
+.wiki-article h5.wiki-heading{font-size:1.2em}
+.wiki-article h6.wiki-heading{font-size:1em}
+
+.wiki-article .wiki-content h1.wiki-heading,
+.wiki-article .wiki-content h2.wiki-heading,
+.wiki-article .wiki-content h3.wiki-heading,
+.wiki-article .wiki-content h4.wiki-heading,
+.wiki-article .wiki-content h5.wiki-heading,
+.wiki-article .wiki-content h6.wiki-heading {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.wiki-heading:before {
+    float: left;
+    font-family: ionicons;
+    font-weight: 400;
+    font-size: .6em;
+    line-height: 1.8em;
+    text-align: center;
+    margin: 0 .5rem 0 .2rem;
+    width: .9em;
+    color: #666;
+    content: "\f123";
+}
+
+.wiki-heading.wiki-heading-content-folded:before {
+    content: "\f125";
+}
+
+.wiki-article .wiki-heading-content .wiki-heading-content-folded{display:none}
+
+.wiki-article .wiki-paragraph {
+    margin-bottom: 1rem;
+}
+
+.wiki-article .wiki-table-wrap {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.wiki-article hr {
+    margin: .5em 0;
+    border-top: .0625rem solid #ccc;
+}
+
+.wiki-article .wiki-fn-content {
+    font-size: .8em;
+    vertical-align: super;
+    white-space: nowrap;
+}
+
+.wiki-article .wiki-macro-footnote {
+    margin: 1.5em 0;
+    padding: .5em 0;
+    border-top: 1px solid #777;
+}
+
+.wiki-article .footnote-list {
+    line-height: 2em;
+    display: block;
+}
+
+
 
 .loginfailDiv p {
 	line-height: 2rem;

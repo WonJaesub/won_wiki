@@ -13,12 +13,12 @@ router.get('/:title*', function(req, res, next) {
 		    	if(content.idx.length !== content.content.length) {
 		    		txt += content.content[0];
 		    		for(var i=0; i<content.idx.length; i++) {
-		    			txt+= content.idx[i];
+		    			txt+= content.idx[i][0];
 		    			txt+= content.content[i+1];
 		    		}
 		    	} else {
 		    		for(var i=0; i<content.idx.length; i++) {
-		    			txt += content.idx[i];
+		    			txt += content.idx[i][0];
 		    			txt += content.content[i];
 		    		}
 		    	}
@@ -57,7 +57,14 @@ router.post('/:title*', function(req, res, next) {
 		text = text.replace(/"/g, "\\\"");
 		// protect XSS
 		text = text.replace(/<script/g, "&lt;script");
-		var idx = text.match(/(={1,6}) [^=]*? \1\r\n/g);
+		var idx_tmp = text.match(/(={1,6}) [^=]*? \1\r\n/g);
+		var idx = null;
+		if(idx_tmp !== null) {
+			idx = new Array();
+			idx_tmp.forEach(function(id) {
+				idx.push([id, id.match(/(={1,6})/)[0].length]);
+			});
+		}
 		
     	text = text.split(/(={1,6}) [^=]*? \1\r\n/);
     	// なんか分からない要素があってスライスする
