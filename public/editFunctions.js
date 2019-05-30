@@ -54,11 +54,12 @@ function edit(text) {
 	result = result.replace(/\[br\]/g, "<br>");
 	
 	// for footnote
-	// [* asdfasdfasdf]
+	// [* asdfasdfasdf] -> [1]
+	// [*A fefsef]      -> [A]
 	var footnote = [];
 	var fn_count = 0;
 	//var fn = result.match(/\[\* (.*?)\]/g);
-	result = result.replace(/\[\*(.*?) (.*?)\]/g, function(match, capture1, capture2) {
+	result = result.replace(/(?<!\\)\[\*(.*?) (.*?)\]/g, function(match, capture1, capture2) {
 		fn_count++;
 		
 		var re;
