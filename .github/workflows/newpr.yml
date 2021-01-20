@@ -40,7 +40,7 @@ jobs:
       #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
       #     echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
       - name: Create Pull Request
-        uses: vsoch/pull-request-action@1.0.6
+        uses: vsoch/pull-request-action@1.0.13
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOPR }}
           PULL_REQUEST_BRANCH: "master"
