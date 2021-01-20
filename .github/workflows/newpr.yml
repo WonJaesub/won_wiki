@@ -8,11 +8,11 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - name: Get develop
-        uses: actions/checkout@v2
-        with:
-          ref: develop
-          token: ${{ secrets.AUTOPR }}
+      # - name: Get develop
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: develop
+      #     token: ${{ secrets.AUTOPR }}
 
       # - name: Create Pull Request
       #   id: cpr
@@ -45,3 +45,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.AUTOPR }}
           PULL_REQUEST_BRANCH: "master"
           PULL_REQUEST_TITLE: "pull req"
+          PULL_REQUEST_FROM_BRANCH: "develop"
