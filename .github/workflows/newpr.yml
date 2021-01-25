@@ -1,11 +1,11 @@
 name: Auto-Create-PR
 
 on:
-  # schedule:
-  #   - cron: "*/15 * * * *"
-  push:
-    branches:
-      - asdf
+  schedule:
+    - cron: "*/15 * * * *"
+  # push:
+  #   branches:
+  #     - asdf
 
 jobs:
   createPullRequest:
@@ -45,7 +45,7 @@ jobs:
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
         env:
-          GITHUB_TOKEN: ${{ secrets.AUTOPR }}
+          GITHUB_TOKEN: ${{ secrets.REPO_STATUS }}
           PULL_REQUEST_BRANCH: "master"
           PULL_REQUEST_TITLE: "pull req"
           PULL_REQUEST_FROM_BRANCH: "develop"
