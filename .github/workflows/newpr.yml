@@ -1,11 +1,11 @@
 name: Auto-Create-PR
 
 on:
-  schedule:
-    - cron: "*/15 * * * *"
-  # push:
-  #   branches:
-  #     - asdf
+  # schedule:
+  #   - cron: "*/15 * * * *"
+  push:
+    branches:
+      - asdf
 
 jobs:
   createPullRequest:
