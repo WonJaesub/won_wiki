@@ -2,7 +2,7 @@ name: Auto-Create-PR
 
 on:
   schedule:
-    - cron: "0 9 * * 2" # wed 15:00 JST
+    - cron: "20 9 * * 2" # wed 15:00 JST
   # push:
   #   branches:
   #     - asdf
@@ -40,12 +40,15 @@ jobs:
       - name: Get current date
         run: echo "BRANCH_NAME=release/$(date +%Y%m%d)_01" >> $GITHUB_ENV
 
-      - name: Create branch
+      - name: Checkout branch
         uses: actions/checkout@v2
         with:
           ref: develop
           token: ${{ secrets.REPO_STATUS }}
-        run: git checkout -b ${{ env.BRANCH_NAME }}
+
+      - name: Create branch
+        run: |
+          git checkout -b ${{ env.BRANCH_NAME }}
           git push origin ${{ env.BRANCH_NAME }}
 
       - name: Create Pull Request
