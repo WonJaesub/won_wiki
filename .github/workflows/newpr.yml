@@ -2,7 +2,7 @@ name: Auto-Create-PR
 
 on:
   schedule:
-    - cron: "0 6 * * 2" # wed 15:00 JST
+    - cron: "0 9 * * 2" # wed 15:00 JST
   # push:
   #   branches:
   #     - asdf
@@ -37,15 +37,27 @@ jobs:
 
       #       [1]: https://github.com/
       #     draft: false
+      - name: Get current date
+        run: echo "BRANCH_NAME=release/$(date +%Y%m%d)_01" >> $GITHUB_ENV
 
-      # - name: Check outputs
-      #   run: |
-      #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-      #     echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Create branch
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+          token: ${{ secrets.REPO_STATUS }}
+        run: git checkout -b ${{ env.BRANCH_NAME }}
+          git push origin ${{ env.BRANCH_NAME }}
+
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_STATUS }}
           PULL_REQUEST_BRANCH: "master"
-          PULL_REQUEST_TITLE: "pull req"
-          PULL_REQUEST_FROM_BRANCH: "develop"
+          PULL_REQUEST_TITLE: ${{ env.BRANCH_NAME }}
+          PULL_REQUEST_FROM_BRANCH: ${{ env.BRANCH_NAME }}
+          PULL_REQUEST_BODY: |
+            ## 概要
+            定期リリース
+            ## 変更内容
+            下のCommit一覧参照
+          PULL_REQUEST_REVIEWERS: WonJaesub
