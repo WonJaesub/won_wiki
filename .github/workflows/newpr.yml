@@ -2,7 +2,7 @@ name: Auto-Create-PR
 
 on:
   schedule:
-    - cron: "20 9 * * 2" # wed 15:00 JST
+    - cron: "0 10 * * 2" # wed 15:00 JST
   # push:
   #   branches:
   #     - asdf
