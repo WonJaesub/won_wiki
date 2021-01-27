@@ -53,10 +53,10 @@ jobs:
 
       - name: Create pull request body
         run: |
-          body = "## 概要\n"
-          body += "定期リリース\n"
-          body += "## 変更内容\n"
-          body += $(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:'%an %s")
+          body="## 概要\n"
+          body+="定期リリース\n"
+          body+="## 変更内容\n"
+          body+=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:'%an %s")
           echo "PR_BODY=\"$body\"" >> $GITHUB_ENV
 
       - name: Create Pull Request
