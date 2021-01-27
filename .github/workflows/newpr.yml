@@ -59,7 +59,7 @@ jobs:
           body+="<h2>変更内容</h2>"
           gitlog=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")
           body+="<p>$gitlog</p>"
-          echo "PR_BODY=$body >> $GITHUB_ENV
+          echo "PR_BODY=$body" >> $GITHUB_ENV
 
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
