@@ -55,12 +55,12 @@ jobs:
         run: |
           git fetch
           body="<h2>概要</h2>"
-          body+="<p>定期リリース</p>"
-          body+="<h2>変更内容</h2>"
+          body="$body<p>定期リリース</p>"
+          body="$body<h2>変更内容</h2>"
           gitlog=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")
-          body+="<p>$gitlog</p>"
+          body="$body<p>$gitlog</p>"
           echo "PR_BODY=$body" >> $GITHUB_ENV
-          echo ${{ env.PR_BODY }}
+          echo $body
 
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
