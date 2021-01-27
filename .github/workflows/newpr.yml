@@ -45,6 +45,7 @@ jobs:
         with:
           ref: develop
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Create branch
         run: |
@@ -55,14 +56,10 @@ jobs:
         run: |
           git fetch
           body="<h2>概要</h2>"
-          body="$body<p>定期リリース</p>"
-          body="$body<h2>変更内容</h2>"
-          gitlog=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")
-          body="$body<p>$gitlog</p>"
+          body+="<p>定期リリース</p>"
+          body+="<h2>変更内容</h2>"
+          body+='$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")'
           echo "PR_BODY=$body" >> $GITHUB_ENV
-          echo $body
-          git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s"　> tmp
-          cat tmp
 
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
