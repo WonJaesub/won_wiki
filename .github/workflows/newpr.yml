@@ -55,12 +55,14 @@ jobs:
       - name: Create pull request body
         run: |
           git fetch
-          echo "PR_BODY<<EOF" >> $GITHUB_ENV
-          echo "## 概要" >> $GITHUB_ENV
-          echo "定期リリース" >> $GITHUB_ENV
-          echo "## 変更内容" >> $GITHUB_ENV
-          git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "PR_BODY<<EOF"
+          echo "## 概要"
+          echo "定期リリース"
+          echo "## 変更内容"
+          git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s"
+          echo ""
+          echo "EOF"
+          echo $PR_BODY
 
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
