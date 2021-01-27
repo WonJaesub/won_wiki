@@ -54,11 +54,12 @@ jobs:
       - name: Create pull request body
         run: |
           git fetch
-          body="## 概要\n"
-          body+="定期リリース\n"
-          body+="## 変更内容\n"
-          body+=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")
-          echo "PR_BODY=\"$body\"" >> $GITHUB_ENV
+          body="<h2>概要</h2>"
+          body+="<p>定期リリース</p>"
+          body+="<h2>変更内容</h2>"
+          echo "PR_BODY=$body >> $GITHUB_ENV
+          echo 'GITLOG=$(git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s")' >> $GITHUB_ENV
+          echo $GITLOG
 
       - name: Create Pull Request
         uses: vsoch/pull-request-action@1.0.13
@@ -67,5 +68,5 @@ jobs:
           PULL_REQUEST_BRANCH: "master"
           PULL_REQUEST_TITLE: ${{ env.BRANCH_NAME }}
           PULL_REQUEST_FROM_BRANCH: ${{ env.BRANCH_NAME }}
-          PULL_REQUEST_BODY: ${{ env.PR_BODY}}
+          PULL_REQUEST_BODY: ${{ env.PR_BODY }}
           PULL_REQUEST_REVIEWERS: WonJaesub
