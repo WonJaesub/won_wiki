@@ -65,6 +65,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create Pull Request
+        id: cpr
         uses: vsoch/pull-request-action@1.0.13
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -76,11 +77,10 @@ jobs:
 
       - name: Post esa
         run: |
+          echo "${{ steps.cpr.outputs }}"
+          echo "${{ steps.cpr.outputs.pull-request-url }}"
           ESA_BODY="## PR\n${{ env.BRANCH_NAME }}\n"
           ESA_BODY+="## 対象\n### flair\n#### ${{ env.BRANCH_NAME }}\n"
           while read i; do
             ESA_BODY+="- [ ] $i"
           done < <(cat tmp_gitlog)
-          curl -X POST -H 'Content-Type: application/json' -H "Authorization: Bearer ${{ secrets.ESA_TOKEN }}" \
-            -d '{"post": {"name": "flair_release_test","body_md": "$ESA_BODY","tags": ["flair"],"category": "CTO室/flair/release","wip": true}}' \
-            https://api.esa.io/v1/teams/mf/posts
