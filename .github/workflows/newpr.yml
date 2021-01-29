@@ -77,7 +77,7 @@ jobs:
 
       - name: Post esa
         run: |
-          echo "${{ steps.cpr.outputs }}"
+          echo ${{ steps.cpr.outputs }}
           echo "${{ steps.cpr.outputs.pull-request-url }}"
           ESA_BODY="## PR\n${{ env.BRANCH_NAME }}\n"
           ESA_BODY+="## 対象\n### flair\n#### ${{ env.BRANCH_NAME }}\n"
