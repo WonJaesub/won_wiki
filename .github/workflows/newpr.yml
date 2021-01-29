@@ -64,16 +64,16 @@ jobs:
           cat tmp_gitlog >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Create Pull Request
-        id: cpr
-        uses: vsoch/pull-request-action@1.0.13
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_BRANCH: "master"
-          PULL_REQUEST_TITLE: ${{ env.BRANCH_NAME }}
-          PULL_REQUEST_FROM_BRANCH: ${{ env.BRANCH_NAME }}
-          PULL_REQUEST_BODY: ${{ env.PR_BODY }}
-          PULL_REQUEST_REVIEWERS: WonJaesub
+      # - name: Create Pull Request
+      #   id: cpr
+      #   uses: vsoch/pull-request-action@1.0.13
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     PULL_REQUEST_BRANCH: "master"
+      #     PULL_REQUEST_TITLE: ${{ env.BRANCH_NAME }}
+      #     PULL_REQUEST_FROM_BRANCH: ${{ env.BRANCH_NAME }}
+      #     PULL_REQUEST_BODY: ${{ env.PR_BODY }}
+      #     PULL_REQUEST_REVIEWERS: WonJaesub
 
       - name: Post esa
         run: |
@@ -83,5 +83,5 @@ jobs:
             ESA_BODY+="- [ ] $i"
           done < <(cat tmp_gitlog)
           curl -X POST -H 'Content-Type: application/json' -H "Authorization: Bearer ${{ secrets.ESA_TOKEN }}" \
-            -d "{\"post\": {\"name\": \"flair_release_test\",\"body_md\": \"$ESA_BODY\"),\"tags\": [\"flair\"],\"category\": \"CTO室/flair/release\",\"wip\": true}}" \
+            -d '{"post": {"name": "flair_release_test","body_md": "'$ESA_BODY'"),"tags": ["flair"],"category": "CTO室/flair/release","wip": true}}' \
             https://api.esa.io/v1/teams/mf/posts
