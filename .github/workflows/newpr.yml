@@ -80,8 +80,8 @@ jobs:
           ESA_BODY="## PR\nasdf\n"
           ESA_BODY+="## 対象\n### flair\n#### ${{ env.BRANCH_NAME }}\n"
           while read i; do
-            ESA_BODY+="- [ ] $i"
+            ESA_BODY+="- [ ] $i\n"
           done < <(cat tmp_gitlog)
           curl --trace-ascii /dev/stdout -X POST -H 'Content-Type: application/json; charset=UTF-8' -H "Authorization: Bearer ${{ secrets.ESA_TOKEN }}" \
-            -d '{"post": {"name": "flair_release_test","body_md": "'"$ESA_BODY"'"),"tags": ["flair"],"category": "CTO室/flair/release","wip": true}}' \
+            -d '{"post": {"name": "flair_release_test","body_md": "'"$ESA_BODY"'","tags": ["flair"],"category": "CTO室/flair/release","wip": true}}' \
             https://api.esa.io/v1/teams/mf/posts
