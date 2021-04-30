@@ -44,23 +44,55 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: develop
-          token: ${{ secrets.REPO_STATUS }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Create branch
         run: |
           git checkout -b ${{ env.BRANCH_NAME }}
           git push origin ${{ env.BRANCH_NAME }}
 
+      - name: Create pull request body
+        run: |
+          git fetch
+          git log --no-merges origin/master..${{ env.BRANCH_NAME }} --oneline --reverse --pretty=format:"%an %s" > tmp_gitlog
+          echo "" >> tmp_gitlog
+          echo "PR_BODY<<EOF" >> $GITHUB_ENV
+          echo "## 概要" >> $GITHUB_ENV
+          echo "定期リリース" >> $GITHUB_ENV
+          echo "## 変更内容" >> $GITHUB_ENV
+          cat tmp_gitlog >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Create Pull Request
+        id: cpr
         uses: vsoch/pull-request-action@1.0.13
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_STATUS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_BRANCH: "master"
           PULL_REQUEST_TITLE: ${{ env.BRANCH_NAME }}
           PULL_REQUEST_FROM_BRANCH: ${{ env.BRANCH_NAME }}
-          PULL_REQUEST_BODY: |
-            ## 概要
-            定期リリース
-            ## 変更内容
-            下のCommit一覧参照
+          PULL_REQUEST_BODY: ${{ env.PR_BODY }}
           PULL_REQUEST_REVIEWERS: WonJaesub
+
+      - name: Post esa
+        run: |
+          ESA_BODY="## PR\n${{ steps.cpr.outputs.pull_request_url }}\n"
+          ESA_BODY+="## 対象\n### flair\n#### ${{ env.BRANCH_NAME }}\n"
+          while read i; do
+            ESA_BODY+="- [ ] $i\n"
+          done < <(cat tmp_gitlog)
+          curl -X POST -H 'Content-Type: application/json; charset=UTF-8' -H "Authorization: Bearer ${{ secrets.ESA_TOKEN }}" \
+            -d '{"post": {"name": "flair_release_test","body_md": "'"$ESA_BODY"'","tags": ["flair"],"category": "CTO室/flair/release","wip": true}}' \
+            https://api.esa.io/v1/teams/mf/posts
+
+      - name: Slack Notification
+        uses: homoluctus/slatify@master
+        if: success()
+        with:
+          type: ${{ job.status }}
+          job_name: ":cat2: STGへのPRが作成されました :cat2:"
+          channel: "#flair_dev"
+          icon_emoji: ":cat2:"
+          username: "GitHub Actions"
+          url: ${{ secrets.SLACK_WEBHOOK }}
