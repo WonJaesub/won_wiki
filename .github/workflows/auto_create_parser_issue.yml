@@ -2,13 +2,13 @@ name: Auto-Create-Parser-Issues
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 jobs:
   createIssues:
     runs-on: ubuntu-latest
-    # if: ${{ startWith(github.action.issue.name?) && contains(github.event.issue.labels.*.name, 'Eipc') && contains(github.event.issue.labels.*.name, 'PARSER') }}
+    # if: ${{ startWith(github.event.issue.name?) && contains(github.event.issue.labels.*.name, 'Eipc') && contains(github.event.issue.labels.*.name, 'PARSER') }}
     steps:
       - name: print event
         run: |
-          echo ${{ github.action.issue }}
+          echo ${{ github.event.issue }}
