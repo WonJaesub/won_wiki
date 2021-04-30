@@ -17,6 +17,8 @@ jobs:
         run: |
           echo "title: ${{ github.event.issue.title }}"
           echo "startsWith: ${{ startsWith(github.event.issue.title, 'パーサー追加') }}"
+          echo "contains Epic: ${{ contains(github.event.issue.labels.*.name, 'Eipc') }}"
+          echo "contains PARSER: ${{ contains(github.event.issue.labels.*.name, 'PARSER') }}"
           echo "full conditions: ${{ startsWith(github.event.issue.title, 'パーサー追加') && contains(github.event.issue.labels.*.name, 'Eipc') && contains(github.event.issue.labels.*.name, 'PARSER') }}"
 
       # - name: Checkout branch
