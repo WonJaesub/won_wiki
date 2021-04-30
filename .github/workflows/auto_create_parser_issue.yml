@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: print event
         run: |
-          echo ${{ github.event.issue }}
+          echo ${{ toJson(github.event.issue) }}
