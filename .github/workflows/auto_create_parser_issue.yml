@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SERVICE_NAME: ${{ env.SERVICE_NAME }}
         with:
-          file_name: .github/create_parser_issue_template/test_template.md
+          filename: .github/create_parser_issue_template/test_template.md
       
       - run: 'echo Created issue number ${{ steps.create-issue.outputs.number }}'
       - run: 'echo Created ${{ steps.create-issue.outputs.url }}'
