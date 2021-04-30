@@ -1,7 +1,7 @@
 ---
 name: Issue
 about: test issue
-title: test(${{ env.SERVICE_NAME }})
+title: test({{ env.SERVICE_NAME }})
 labels: PARSER
 assignees: ''
 
@@ -16,7 +16,7 @@ assignees: ''
 ## タスク
 - [ ] メーから抜き出す項目を洗い出す
 - [ ] モデルの実装
-    - `flair/internal/pkg/models/nosql/receipt/${{ env.SERVICE_NAME }}/model.go` の修正
+    - `flair/internal/pkg/models/nosql/receipt/{{ env.SERVICE_NAME }}/model.go` の修正
 
 ## 完了条件
 - [ ] レビュー完了していること
