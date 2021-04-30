@@ -7,7 +7,7 @@ on:
 jobs:
   createIssues:
     runs-on: ubuntu-latest
-    if: ${{ startWith(github.event.issue.title, 'パーサー追加') && contains(github.event.issue.labels.*.name, 'Eipc') && contains(github.event.issue.labels.*.name, 'PARSER') }}
+    if: ${{ startsWith(github.event.issue.title, 'パーサー追加') && contains(github.event.issue.labels.*.name, 'Eipc') && contains(github.event.issue.labels.*.name, 'PARSER') }}
     steps:
       # - name: print event
       #   run: |
