@@ -47,7 +47,7 @@ jobs:
 
       - name: Test steps array
         run: |
-          for number in ${{ steps.*.outputs.number }}
+          for number in ${{ join(steps.*.outputs.number, ",") }}
           do
             echo "number: ${number}"
           done
