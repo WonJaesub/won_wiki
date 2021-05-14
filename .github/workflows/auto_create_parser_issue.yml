@@ -32,6 +32,22 @@ jobs:
           SERVICE_NAME: ${{ env.SERVICE_NAME }}
         with:
           filename: .github/create_parser_issue_template/test_template.md
+
+      - name: Create issue
+        id: create-issue2
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SERVICE_NAME: ${{ env.SERVICE_NAME }}2
+        with:
+          filename: .github/create_parser_issue_template/test_template2.md
       
-      - run: 'echo Created issue number ${{ steps.create-issue.outputs.number }}'
-      - run: 'echo Created ${{ steps.create-issue.outputs.url }}'
+      # - run: 'echo Created issue number ${{ steps.create-issue.outputs.number }}'
+      # - run: 'echo Created ${{ steps.create-issue.outputs.url }}'
+
+      - name: Test steps array
+        run: |
+          for number in ${{ steps.*.outputs.number }}
+          do
+            echo "number: ${number}"
+          done
